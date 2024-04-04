@@ -13,7 +13,7 @@ import javax.persistence.EntityManager;
  * @author gabri
  */
 public class ProdutoRepository {
-        private EntityManager entityManager;
+    private EntityManager entityManager;
 
     public ProdutoRepository(EntityManager entityManager) {
         this.entityManager = entityManager;

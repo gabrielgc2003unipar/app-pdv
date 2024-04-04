@@ -50,7 +50,7 @@ public class VendaRepository {
     }
 
     public List<Venda> findAll() {
-        return entityManager.createQuery("SELECT V FROM VENDA V",
+        return entityManager.createQuery("SELECT V FROM Venda V",
                 Venda.class).getResultList();   
     }
 }

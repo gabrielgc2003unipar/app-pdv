@@ -22,6 +22,5 @@ public class VendaService {
     }
     public List<Venda> findAll() {
         return new VendaRepository(EntityManagerUtil.getManager()).findAll();
-    }
-    
+    }   
 }
