@@ -5,7 +5,9 @@
 package com.mycompany.app.pdv.entities;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +24,7 @@ public class Venda {
     private int id;
     @OneToOne
     private Cliente cliente;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ItemVenda> itemVenda;
     @Column(name = "vl_total")
     private double valorTotal;
@@ -40,7 +42,6 @@ public class Venda {
         this.valorTotal = valorTotal;
         this.valorDesconto = valorDesconto;
         this.quantidadeItens = quantidadeItens;
-    
     }
 
     public int getId() {
@@ -82,5 +83,12 @@ public class Venda {
     public void setQuantidadeItens(int quantidadeItens) {
         this.quantidadeItens = quantidadeItens;
     }
-    
+
+    public List<ItemVenda> getItemVenda() {
+        return itemVenda;
+    }
+
+    public void setItemVenda(List<ItemVenda> itemVenda) {
+        this.itemVenda = itemVenda;
+    }
 }
