@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
-package com.mycompany.app.pdv.views.cliente;
+package com.mycompany.app.pdv.views;
 
 /**
  *
