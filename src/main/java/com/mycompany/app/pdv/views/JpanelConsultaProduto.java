@@ -1,17 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.mycompany.app.pdv.views;
 
 import com.mycompany.app.pdv.entities.Produto;
+import java.awt.Dialog;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 
-/**
- *
- * @author wallg
- */
 public class JpanelConsultaProduto extends javax.swing.JPanel {
 
     /**
@@ -34,9 +29,8 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btAdicionar = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollBar1 = new javax.swing.JScrollBar();
@@ -62,16 +56,14 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btAdicionar.setText("Adicionar");
+        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btAdicionarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-
-        jButton3.setText("Cancelar");
+        btCancelar.setText("Cancelar");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/search (4).png"))); // NOI18N
         jButton4.setText("Consultar");
@@ -89,9 +81,9 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btAdicionar)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -109,11 +101,6 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
                         .addComponent(jButton4)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel2))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 251, Short.MAX_VALUE)
-                    .addComponent(jButton2)
-                    .addGap(0, 252, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,20 +122,26 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(btCancelar)
+                    .addComponent(btAdicionar))
                 .addContainerGap(36, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 166, Short.MAX_VALUE)
-                    .addComponent(jButton2)
-                    .addGap(0, 166, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Opções do produto");
+
+        JPanel panel = new JpanelOpcoesProduto(1);
+        dialog.add(panel);
+
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setResizable(false);
+        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -161,9 +154,8 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btAdicionar;
+    private javax.swing.JButton btCancelar;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

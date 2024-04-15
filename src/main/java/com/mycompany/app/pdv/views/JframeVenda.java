@@ -5,12 +5,12 @@
 package com.mycompany.app.pdv.views;
 
 import java.awt.Color;
+import java.awt.Dialog;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-/**
- *
- * @author wallg
- */
+
 public class JframeVenda extends javax.swing.JFrame {
 
     /**
@@ -30,14 +30,13 @@ public class JframeVenda extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableItens = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -81,8 +80,8 @@ public class JframeVenda extends javax.swing.JFrame {
 
         jPanel10.setLayout(new java.awt.BorderLayout(0, 10));
 
-        jTable1.setBackground(new java.awt.Color(60, 63, 65));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableItens.setBackground(new java.awt.Color(60, 63, 65));
+        tableItens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -93,11 +92,11 @@ public class JframeVenda extends javax.swing.JFrame {
                 "Produto", "Valor Unit.", "Qtd.", "Valor total", "Desconto"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(51, 51, 51));
-        jTable1.setMinimumSize(new java.awt.Dimension(100, 100));
-        jTable1.setRequestFocusEnabled(false);
-        jTable1.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(jTable1);
+        tableItens.setGridColor(new java.awt.Color(51, 51, 51));
+        tableItens.setMinimumSize(new java.awt.Dimension(100, 100));
+        tableItens.setRequestFocusEnabled(false);
+        tableItens.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setViewportView(tableItens);
 
         jPanel10.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -365,7 +364,18 @@ public class JframeVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxCpfNotaActionPerformed
 
     private void btSelecionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarClienteActionPerformed
-        // TODO add your handling code here:
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Selecionar cliente");
+
+        JPanel panel = new JpanelConsultaCliente();
+        dialog.add(panel);
+
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setResizable(false);
+        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+
+        dialog.setVisible(true);
     }//GEN-LAST:event_btSelecionarClienteActionPerformed
 
     private void jFieldClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFieldClienteActionPerformed
@@ -381,7 +391,18 @@ public class JframeVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btAddProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProdutosActionPerformed
-        // TODO add your handling code here:
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Selecionar produtos");
+
+        JPanel panel = new JpanelConsultaProduto();
+        dialog.add(panel);
+
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setResizable(false);
+        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+
+        dialog.setVisible(true);
     }//GEN-LAST:event_btAddProdutosActionPerformed
 
     private void jFieldVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFieldVendedorActionPerformed
@@ -389,7 +410,18 @@ public class JframeVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jFieldVendedorActionPerformed
 
     private void btSelecionarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarVendedorActionPerformed
-        // TODO add your handling code here:
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Selecionar vendedor");
+
+        JPanel panel = new JpanelConsultaCliente();
+        dialog.add(panel);
+
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setResizable(false);
+        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+
+        dialog.setVisible(true);
     }//GEN-LAST:event_btSelecionarVendedorActionPerformed
 
     /**
@@ -454,7 +486,7 @@ public class JframeVenda extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tableItens;
     // End of variables declaration//GEN-END:variables
 }
