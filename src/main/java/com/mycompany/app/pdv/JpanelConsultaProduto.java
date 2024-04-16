@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package com.mycompany.app.pdv;
 
 import com.mycompany.app.pdv.entities.Produto;
@@ -37,7 +34,6 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
         btAdicionarProduto = new javax.swing.JButton();
         btConsultarProduto = new javax.swing.JButton();
         btVoltarProduto = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
         setLayout(null);
@@ -45,10 +41,15 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Consultar Produto:");
         add(jLabel1);
-        jLabel1.setBounds(390, 80, 250, 60);
+        jLabel1.setBounds(70, 80, 250, 60);
 
+        tabelaProduto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -69,7 +70,7 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tabelaProduto);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(0, 210, 1920, 406);
+        jScrollPane1.setBounds(0, 210, 1920, 470);
 
         txtProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,8 +78,11 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
             }
         });
         add(txtProduto);
-        txtProduto.setBounds(600, 80, 827, 70);
+        txtProduto.setBounds(280, 80, 827, 70);
 
+        btAdicionarProduto.setBackground(new java.awt.Color(51, 255, 0));
+        btAdicionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btAdicionarProduto.setForeground(new java.awt.Color(0, 0, 0));
         btAdicionarProduto.setText("Adicionar");
         btAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,10 +90,9 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
             }
         });
         add(btAdicionarProduto);
-        btAdicionarProduto.setBounds(1800, 660, 97, 36);
+        btAdicionarProduto.setBounds(1710, 700, 190, 70);
 
         btConsultarProduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btConsultarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/app/pdv/loupe_751463.png"))); // NOI18N
         btConsultarProduto.setText("CONSULTAR");
         btConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,15 +100,14 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
             }
         });
         add(btConsultarProduto);
-        btConsultarProduto.setBounds(1450, 80, 217, 70);
+        btConsultarProduto.setBounds(1130, 80, 217, 70);
 
+        btVoltarProduto.setBackground(new java.awt.Color(255, 153, 51));
+        btVoltarProduto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btVoltarProduto.setForeground(new java.awt.Color(0, 0, 0));
         btVoltarProduto.setText("Voltar");
         add(btVoltarProduto);
-        btVoltarProduto.setBounds(1680, 660, 97, 37);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/app/pdv/marketpraga.png"))); // NOI18N
-        add(jLabel2);
-        jLabel2.setBounds(30, 0, 330, 120);
+        btVoltarProduto.setBounds(1480, 700, 190, 70);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarProdutoActionPerformed
@@ -128,7 +130,6 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
     private javax.swing.JButton btConsultarProduto;
     private javax.swing.JButton btVoltarProduto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaProduto;
     private javax.swing.JTextField txtProduto;
