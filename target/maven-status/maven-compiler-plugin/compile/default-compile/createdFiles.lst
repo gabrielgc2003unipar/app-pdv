@@ -1,4 +1,5 @@
 com\mycompany\app\pdv\repositories\VendaRepository.class
+com\mycompany\app\pdv\views\JpanelFinalizarVenda.class
 com\mycompany\app\pdv\util\EntityManagerUtil.class
 com\mycompany\app\pdv\views\JframeVenda$1.class
 com\mycompany\app\pdv\views\JpanelConsultaCliente$1.class
@@ -7,6 +8,7 @@ com\mycompany\app\pdv\services\VendaService.class
 com\mycompany\app\pdv\views\JframeVenda$11.class
 com\mycompany\app\pdv\views\JframeVenda.class
 com\mycompany\app\pdv\services\ClienteService.class
+com\mycompany\app\pdv\views\JpanelFinalizarVenda$2.class
 com\mycompany\app\pdv\views\JframeVenda$8.class
 com\mycompany\app\pdv\views\JpanelOpcoesProduto.class
 com\mycompany\app\pdv\repositories\ProdutoRepositoryImp.class
@@ -41,4 +43,5 @@ com\mycompany\app\pdv\views\JframeVenda$5.class
 com\mycompany\app\pdv\views\JpanelConsultaCliente.class
 com\mycompany\app\pdv\repositories\ItemVendaRepositoryImp.class
 com\mycompany\app\pdv\repositories\ClienteRepositoryImp.class
+com\mycompany\app\pdv\views\JpanelFinalizarVenda$1.class
 com\mycompany\app\pdv\views\JframeVenda$2.class

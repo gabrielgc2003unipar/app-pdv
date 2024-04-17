@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -425,17 +426,29 @@ public class JframeVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jFieldClienteActionPerformed
 
     private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
-        ItemVendaRepository itemVendaRepository = 
-                new ItemVendaRepositoryImp(EntityManagerUtil.getManager());
-        
-        try {
-            for(ItemVenda item : this.listaItemVenda) {
-                itemVendaRepository.insert(item);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(JframeVenda.class.getName()).log(Level.SEVERE, null, ex);
+        if(listaItemVenda.size() == 0){
+            JOptionPane.showMessageDialog(null, "Por favor selecione algum produto", "Input inválido", JOptionPane.ERROR_MESSAGE);
         }
-        
+        else {
+            double desconto = 0;
+            double total = 0;
+            double subtotal = 0;
+
+            for(ItemVenda item : listaItemVenda) {
+                desconto += item.getDescontoProduto();
+                subtotal += item.getProduto().getValorUnitario();
+                total += item.getProduto().getValorUnitario() - item.getDescontoProduto();
+            }
+
+            JPanel panel = new JpanelFinalizarVenda(subtotal, total, desconto);
+            JFrame frame = new JFrame("Finalizar venda");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setResizable(false);
+            frame.add(panel);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        }
     }//GEN-LAST:event_btFinalizarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
