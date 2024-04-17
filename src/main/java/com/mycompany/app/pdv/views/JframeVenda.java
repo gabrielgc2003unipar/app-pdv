@@ -9,6 +9,7 @@ import java.awt.Dialog;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 
 public class JframeVenda extends javax.swing.JFrame {
@@ -20,6 +21,7 @@ public class JframeVenda extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setTitle("Menu PDV");
+       
     }
 
     /**
@@ -91,12 +93,28 @@ public class JframeVenda extends javax.swing.JFrame {
             new String [] {
                 "Produto", "Valor Unit.", "Qtd.", "Valor total", "Desconto"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tableItens.setGridColor(new java.awt.Color(51, 51, 51));
         tableItens.setMinimumSize(new java.awt.Dimension(100, 100));
         tableItens.setRequestFocusEnabled(false);
         tableItens.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        tableItens.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableItens);
+        if (tableItens.getColumnModel().getColumnCount() > 0) {
+            tableItens.getColumnModel().getColumn(0).setResizable(false);
+            tableItens.getColumnModel().getColumn(1).setResizable(false);
+            tableItens.getColumnModel().getColumn(2).setResizable(false);
+            tableItens.getColumnModel().getColumn(3).setResizable(false);
+            tableItens.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jPanel10.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -376,6 +394,7 @@ public class JframeVenda extends javax.swing.JFrame {
         dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         dialog.setVisible(true);
+        
     }//GEN-LAST:event_btSelecionarClienteActionPerformed
 
     private void jFieldClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFieldClienteActionPerformed
@@ -403,6 +422,7 @@ public class JframeVenda extends javax.swing.JFrame {
         dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         dialog.setVisible(true);
+        
     }//GEN-LAST:event_btAddProdutosActionPerformed
 
     private void jFieldVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFieldVendedorActionPerformed
@@ -458,6 +478,16 @@ public class JframeVenda extends javax.swing.JFrame {
                 new JframeVenda().setBackground(Color.DARK_GRAY);           }
         });
     }
+    public void adicionarProdutos(int codigo, String descricao, double valorUnitario, int quantidade, double desconto) {
+        DefaultTableModel model = (DefaultTableModel) tableItens.getModel();
+        double subtotal = valorUnitario * quantidade;
+        double valorComDesconto = subtotal - desconto;
+        Object[] row = {codigo, descricao, valorUnitario, quantidade, valorComDesconto, desconto}; 
+        model.addRow(row);
+    }
+
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddProdutos;

@@ -1,11 +1,20 @@
 package com.mycompany.app.pdv.views;
 
+
 import com.mycompany.app.pdv.entities.Produto;
+
 import java.awt.Dialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class JpanelConsultaProduto extends javax.swing.JPanel {
 
@@ -14,7 +23,43 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
      */
     public JpanelConsultaProduto() {
         initComponents();
-    }
+        atualizarLista();
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            filtrarTabela(jTextField1.getText());
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            filtrarTabela(jTextField1.getText());
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            filtrarTabela(jTextField1.getText());
+        }
+    });
+         btAdicionar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            adicionarProdutosSelecionados();
+        }
+    });
+        
+}
+      
+private void filtrarTabela(String termoPesquisa) {
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+    jTable1.setRowSorter(sorter);
+    
+    RowFilter<DefaultTableModel, Object> rowFilter = RowFilter.regexFilter("(?i)" + termoPesquisa);
+    sorter.setRowFilter(rowFilter);
+}
+        
+        
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,30 +173,89 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
-        JDialog dialog = new JDialog();
-        dialog.setTitle("Opções do produto");
-
-        JPanel panel = new JpanelOpcoesProduto(1);
-        dialog.add(panel);
-
-        dialog.pack();
-        dialog.setLocationRelativeTo(null);
-        dialog.setResizable(false);
-        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-
-        dialog.setVisible(true);
+        
+        adicionarProdutosSelecionados();
+//        JDialog dialog = new JDialog();
+//        dialog.setTitle("Opções do produto");
+//
+//        JPanel panel = new JpanelOpcoesProduto(1);
+//        dialog.add(panel);
+//
+//        dialog.pack();
+//        dialog.setLocationRelativeTo(null);
+//        dialog.setResizable(false);
+//        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+//
+//        dialog.setVisible(true);
+        
     }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-     private void atualizarLista() {
-	List<Produto> listProdutos = new ArrayList<Produto>();
-
-        
+    private void atualizarTabela(List<Produto> produtos) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); 
+    
+    for (Produto produto : produtos ) {
+        Object[] row = {produto.getId(), produto.getDescricao(), produto.getValorUnitario(), produto.getQuantidade(), false};
+        model.addRow(row);
     }
+}
+    
+    private void atualizarLista() {
+    List<Produto> listProdutos = new ArrayList<>();
+    
+
+    Produto produto1 = new Produto();
+    
+    produto1.setId(1);
+    produto1.setDescricao("Pão");
+    produto1.setValorUnitario(10.50);
+    produto1.setQuantidade(4);
+    
+
+    Produto produto2 = new Produto();
+    produto2.setId(2);
+    produto2.setDescricao("Geladeira");
+    produto2.setValorUnitario(15.75);
+    produto2.setQuantidade(32);
+
+    Produto produto3 = new Produto();
+    produto3.setId(3);
+    produto3.setDescricao("Casa");
+    produto3.setValorUnitario(8.99);
+    produto3.setQuantidade(10);
+
+    listProdutos.add(produto1);
+    listProdutos.add(produto2);
+    listProdutos.add(produto3);
+
+    atualizarTabela(listProdutos);
+    }
+    
+    private void adicionarProdutosSelecionados() {
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    int rowCount = model.getRowCount();
+    
+   
+    for (int i = 0; i < rowCount; i++) {
+        boolean selecionado = (boolean) jTable1.getValueAt(i, 4); // Obtém o valor do boolean "Selecionar"
+        if (selecionado) {
+            JframeVenda frameVenda = new JframeVenda();
+            int codigo = (int) jTable1.getValueAt(i, 0); // Obtém o código do produto
+            String descricao = (String) jTable1.getValueAt(i, 1); // Obtém a descrição do produto
+            double valorUnitario = (double) jTable1.getValueAt(i, 2); // Obtém o valor unitário do produto
+            int quantidade = (int) jTable1.getValueAt(i, 3);
+            double desconto = (double) jTable1.getValueAt(i, 4); // Obtém o valor unitário do produto
+         
+            frameVenda.adicionarProdutos(1, "pao", 1.0, 6, 7.0);
+        }
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionar;

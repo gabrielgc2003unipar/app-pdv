@@ -21,6 +21,8 @@ public class Produto {
     private String descricao;
     @Column(name = "vl_unitario")
     private double valorUnitario;
+    @Column(name = "qtd_produto")
+    private int quantidade;
 
     public Produto() {
     }
@@ -29,6 +31,7 @@ public class Produto {
         this.id = id;
         this.descricao = descricao;
         this.valorUnitario = valorUnitario;
+        this.quantidade = quantidade;
     }
 
     public int getId() {
@@ -53,6 +56,14 @@ public class Produto {
 
     public void setValorUnitario(double valorUnitario) {
         this.valorUnitario = valorUnitario;
+    }
+
+    public double getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
     
 }
