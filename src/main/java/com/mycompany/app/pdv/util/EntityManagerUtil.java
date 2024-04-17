@@ -19,7 +19,7 @@ public class EntityManagerUtil {
     }
     public static EntityManager getManager(){
         if(em == null || !em.isOpen()){
-            em = emf.createEntityManager();
+            em = getEntityManagerFactory().createEntityManager();
             System.out.println("COnexão aberta");
         }
         return em;

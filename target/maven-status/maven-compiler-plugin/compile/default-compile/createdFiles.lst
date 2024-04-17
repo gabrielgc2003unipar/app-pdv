@@ -22,10 +22,13 @@ com\mycompany\app\pdv\repositories\VendaRepositoryImp.class
 com\mycompany\app\pdv\views\JframeVenda$6.class
 com\mycompany\app\pdv\repositories\ClienteRepository.class
 com\mycompany\app\pdv\views\JpanelConsultaProduto$2.class
+com\mycompany\app\pdv\tablemodels\ClienteTableModel.class
 com\mycompany\app\pdv\views\JpanelOpcoesProduto$2.class
 com\mycompany\app\pdv\views\JpanelConsultaProduto$5.class
+com\mycompany\app\pdv\repositories\ItemVendaRepository.class
 com\mycompany\app\pdv\views\JframeVenda$9.class
 com\mycompany\app\pdv\services\ProdutoService.class
+com\mycompany\app\pdv\tablemodels\ProdutoTableModel.class
 com\mycompany\app\pdv\views\JframeVenda$3.class
 com\mycompany\app\pdv\entities\Cliente.class
 com\mycompany\app\pdv\entities\Produto.class
@@ -34,5 +37,6 @@ com\mycompany\app\pdv\views\JpanelOpcoesProduto$3.class
 com\mycompany\app\pdv\repositories\ProdutoRepository.class
 com\mycompany\app\pdv\views\JframeVenda$5.class
 com\mycompany\app\pdv\views\JpanelConsultaCliente.class
+com\mycompany\app\pdv\repositories\ItemVendaRepositoryImp.class
 com\mycompany\app\pdv\repositories\ClienteRepositoryImp.class
 com\mycompany\app\pdv\views\JframeVenda$2.class

@@ -5,6 +5,14 @@
 
 package com.mycompany.app.pdv.views;
 
+import com.mycompany.app.pdv.entities.Cliente;
+import com.mycompany.app.pdv.repositories.ClienteRepository;
+import com.mycompany.app.pdv.repositories.ClienteRepositoryImp;
+import com.mycompany.app.pdv.tablemodels.ClienteTableModel;
+import com.mycompany.app.pdv.util.EntityManagerUtil;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author wallg
@@ -14,6 +22,7 @@ public class JpanelConsultaCliente extends javax.swing.JPanel {
     /** Creates new form JpanelConsulta */
     public JpanelConsultaCliente() {
         initComponents();
+        atualizarLista();
     }
 
     /** This method is called from within the constructor to
@@ -133,6 +142,21 @@ public class JpanelConsultaCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+     private void atualizarLista() {
+        List<Cliente> listaClientes = new ArrayList<>();
+        
+         ClienteRepository clienteDAO = new 
+            ClienteRepositoryImp(EntityManagerUtil.getManager());
+        
+        listaClientes.addAll(clienteDAO.findAll());
+        
+         ClienteTableModel model = 
+                new ClienteTableModel(listaClientes);
+        
+        jTable1.setModel(model);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

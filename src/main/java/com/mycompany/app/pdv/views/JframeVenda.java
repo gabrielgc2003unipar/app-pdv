@@ -4,6 +4,8 @@
  */
 package com.mycompany.app.pdv.views;
 
+import com.mycompany.app.pdv.entities.ItemVenda;
+import com.mycompany.app.pdv.util.EntityManagerUtil;
 import java.awt.Color;
 import java.awt.Dialog;
 import javax.swing.JDialog;
@@ -82,16 +84,17 @@ public class JframeVenda extends javax.swing.JFrame {
 
         jPanel10.setLayout(new java.awt.BorderLayout(0, 10));
 
-        tableItens.setBackground(new java.awt.Color(60, 63, 65));
+        tableItens.setBackground(new java.awt.Color(204, 204, 204));
         tableItens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
-                "Produto", "Valor Unit.", "Qtd.", "Valor total", "Desconto"
+                "Produto", "Valor Unit.", "Qtd.", "Desconto", "Valor total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -103,7 +106,7 @@ public class JframeVenda extends javax.swing.JFrame {
             }
         });
         tableItens.setGridColor(new java.awt.Color(51, 51, 51));
-        tableItens.setMinimumSize(new java.awt.Dimension(100, 100));
+        tableItens.setMinimumSize(new java.awt.Dimension(200, 200));
         tableItens.setRequestFocusEnabled(false);
         tableItens.setSelectionBackground(new java.awt.Color(51, 51, 51));
         tableItens.getTableHeader().setReorderingAllowed(false);
@@ -118,17 +121,20 @@ public class JframeVenda extends javax.swing.JFrame {
 
         jPanel10.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel8.setBackground(new java.awt.Color(0, 0, 130));
+        jPanel8.setBackground(new java.awt.Color(0, 51, 51));
         jPanel8.setAlignmentX(0.0F);
         jPanel8.setAlignmentY(0.0F);
         jPanel8.setPreferredSize(new java.awt.Dimension(602, 50));
 
+        jLabel10.setBackground(new java.awt.Color(204, 204, 204));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel10.setText("SUBTOTAL");
 
+        jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setText("R$");
 
+        jLabelSubtotal.setBackground(new java.awt.Color(204, 204, 204));
         jLabelSubtotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelSubtotal.setText("0,00");
         jLabelSubtotal.setToolTipText("");
@@ -159,7 +165,7 @@ public class JframeVenda extends javax.swing.JFrame {
         jPanel7.setForeground(new java.awt.Color(60, 63, 65));
         jPanel7.setToolTipText("");
 
-        btNovo.setBackground(new java.awt.Color(51, 51, 51));
+        btNovo.setBackground(new java.awt.Color(0, 102, 51));
         btNovo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Novo.png"))); // NOI18N
         btNovo.setText("Novo (F9)");
@@ -174,7 +180,7 @@ public class JframeVenda extends javax.swing.JFrame {
         });
         jPanel9.add(btNovo);
 
-        btFinalizar.setBackground(new java.awt.Color(51, 51, 51));
+        btFinalizar.setBackground(new java.awt.Color(0, 90, 153));
         btFinalizar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Checked.png"))); // NOI18N
         btFinalizar.setText("Finalizar (F8)");
@@ -244,7 +250,7 @@ public class JframeVenda extends javax.swing.JFrame {
 
         jPanel13.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 340, 180));
 
-        btSelecionarCliente.setBackground(new java.awt.Color(51, 51, 51));
+        btSelecionarCliente.setBackground(new java.awt.Color(0, 70, 70));
         btSelecionarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btSelecionarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Clientes.png"))); // NOI18N
         btSelecionarCliente.setText("Selecionar Cliente");
@@ -271,7 +277,7 @@ public class JframeVenda extends javax.swing.JFrame {
         });
         jPanel13.add(jCheckBoxCpfNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
 
-        btAddProdutos.setBackground(new java.awt.Color(51, 51, 51));
+        btAddProdutos.setBackground(new java.awt.Color(0, 70, 70));
         btAddProdutos.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btAddProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/adicionar-sacola-de-compras (1).png"))); // NOI18N
         btAddProdutos.setText("Adicionar Produtos");
@@ -326,7 +332,7 @@ public class JframeVenda extends javax.swing.JFrame {
 
         jPanel14.add(jLayeredPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 340, 80));
 
-        btSelecionarVendedor.setBackground(new java.awt.Color(51, 51, 51));
+        btSelecionarVendedor.setBackground(new java.awt.Color(0, 70, 70));
         btSelecionarVendedor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btSelecionarVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Clientes.png"))); // NOI18N
         btSelecionarVendedor.setText("Selecionar Vendedor");
@@ -346,6 +352,7 @@ public class JframeVenda extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -354,7 +361,6 @@ public class JframeVenda extends javax.swing.JFrame {
                         .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(10, Short.MAX_VALUE))
-            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,7 +368,7 @@ public class JframeVenda extends javax.swing.JFrame {
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136)
                 .addComponent(btAddProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -444,6 +450,20 @@ public class JframeVenda extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_btSelecionarVendedorActionPerformed
 
+    public static void addNovoItemToTable(ItemVenda item) {
+        DefaultTableModel model = (DefaultTableModel) tableItens.getModel();
+        
+        Object[] object = new Object[]{ 
+            item.getProduto().getDescricao(),
+            item.getProduto().getValorUnitario(),
+            item.getQuantidade(),
+            item.getDescontoProduto(),
+            item.getValorTotal(),
+        };
+        
+        model.addRow(object);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -517,6 +537,6 @@ public class JframeVenda extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tableItens;
+    private static javax.swing.JTable tableItens;
     // End of variables declaration//GEN-END:variables
 }

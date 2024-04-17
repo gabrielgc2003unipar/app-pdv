@@ -237,6 +237,26 @@ private void filtrarTabela(String termoPesquisa) {
     atualizarTabela(listProdutos);
     }
     
+//    private void adicionarProdutosSelecionados() {
+//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//    int rowCount = model.getRowCount();
+//    
+//   
+//    for (int i = 0; i < rowCount; i++) {
+//        boolean selecionado = (boolean) jTable1.getValueAt(i, 4); // Obtém o valor do boolean "Selecionar"
+//        if (selecionado) {
+//            JframeVenda frameVenda = new JframeVenda();
+//            int codigo = (int) jTable1.getValueAt(i, 0); // Obtém o código do produto
+//            String descricao = (String) jTable1.getValueAt(i, 1); // Obtém a descrição do produto
+//            double valorUnitario = (double) jTable1.getValueAt(i, 2); // Obtém o valor unitário do produto
+//            int quantidade = (int) jTable1.getValueAt(i, 3);
+//            double desconto = (double) jTable1.getValueAt(i, 4); // Obtém o valor unitário do produto
+//         
+//            frameVenda.adicionarProdutos(1, "pao", 1.0, 6, 7.0);
+//        }
+//    }
+//}
+    
     private void adicionarProdutosSelecionados() {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     int rowCount = model.getRowCount();
@@ -245,17 +265,30 @@ private void filtrarTabela(String termoPesquisa) {
     for (int i = 0; i < rowCount; i++) {
         boolean selecionado = (boolean) jTable1.getValueAt(i, 4); // Obtém o valor do boolean "Selecionar"
         if (selecionado) {
-            JframeVenda frameVenda = new JframeVenda();
             int codigo = (int) jTable1.getValueAt(i, 0); // Obtém o código do produto
             String descricao = (String) jTable1.getValueAt(i, 1); // Obtém a descrição do produto
             double valorUnitario = (double) jTable1.getValueAt(i, 2); // Obtém o valor unitário do produto
-            int quantidade = (int) jTable1.getValueAt(i, 3);
-            double desconto = (double) jTable1.getValueAt(i, 4); // Obtém o valor unitário do produto
-         
-            frameVenda.adicionarProdutos(1, "pao", 1.0, 6, 7.0);
+            
+            Produto produto = new Produto(codigo, descricao, valorUnitario);
+            chamaMenuOpcoes(produto);
         }
     }
 }
+    
+    private void chamaMenuOpcoes(Produto produto){ 
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Opções do produto");
+
+        JPanel panel = new JpanelOpcoesProduto(produto);
+        dialog.add(panel);
+
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setResizable(false);
+        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+
+        dialog.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionar;
