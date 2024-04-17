@@ -8,13 +8,16 @@ import com.mycompany.app.pdv.tablemodels.ProdutoTableModel;
 import com.mycompany.app.pdv.util.EntityManagerUtil;
 
 import java.awt.Dialog;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -228,19 +231,21 @@ private void filtrarTabela(String termoPesquisa) {
 }
     
     private void chamaMenuOpcoes(Produto produto){ 
-        JDialog dialog = new JDialog();
-        dialog.setTitle("Opções do produto");
-
         JPanel panel = new JpanelOpcoesProduto(produto);
-        dialog.add(panel);
-
-        dialog.pack();
-        dialog.setLocationRelativeTo(null);
-        dialog.setResizable(false);
-        dialog.setSize(475, 425);
-        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-
-        dialog.setVisible(true);
+        JFrame frame = new JFrame("Consulta de Cliente");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(false);
+        frame.add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        
+//        dialog.setSize(475, 425); 
+        Window window = SwingUtilities.getWindowAncestor(this);
+        if (window instanceof JDialog) {
+            JDialog dialog = (JDialog) window;
+            dialog.dispose();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,12 +5,15 @@
 package com.mycompany.app.pdv.views;
 
 import com.mycompany.app.pdv.entities.ItemVenda;
+import com.mycompany.app.pdv.repositories.ItemVendaRepository;
+import com.mycompany.app.pdv.repositories.ItemVendaRepositoryImp;
 import com.mycompany.app.pdv.tablemodels.ItemVendaTableModel;
+import com.mycompany.app.pdv.util.EntityManagerUtil;
 import java.awt.Color;
-import java.awt.Dialog;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JDialog;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -67,6 +70,7 @@ public class JframeVenda extends javax.swing.JFrame {
         jFieldVendedor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btSelecionarVendedor = new javax.swing.JButton();
+        btAtualizarTabela = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -354,6 +358,13 @@ public class JframeVenda extends javax.swing.JFrame {
         });
         jPanel14.add(btSelecionarVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 35, 190, -1));
 
+        btAtualizarTabela.setText("Atualizar tabela");
+        btAtualizarTabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarTabelaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -362,17 +373,21 @@ public class JframeVenda extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btAddProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btAtualizarTabela)
+                        .addComponent(btAddProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
+                .addGap(101, 101, 101)
+                .addComponent(btAtualizarTabela)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAddProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,18 +409,14 @@ public class JframeVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxCpfNotaActionPerformed
 
     private void btSelecionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarClienteActionPerformed
-        JDialog dialog = new JDialog();
-        dialog.setTitle("Selecionar cliente");
-
         JPanel panel = new JpanelConsultaCliente();
-        dialog.add(panel);
-
-        dialog.pack();
-        dialog.setLocationRelativeTo(null);
-        dialog.setResizable(false);
-        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-
-        dialog.setVisible(true);
+        JFrame frame = new JFrame("Consulta de Cliente");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(false);
+        frame.add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
         
     }//GEN-LAST:event_btSelecionarClienteActionPerformed
 
@@ -414,70 +425,63 @@ public class JframeVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jFieldClienteActionPerformed
 
     private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
-        // TODO add your handling code here:
+        ItemVendaRepository itemVendaRepository = 
+                new ItemVendaRepositoryImp(EntityManagerUtil.getManager());
+        
+        try {
+            for(ItemVenda item : this.listaItemVenda) {
+                itemVendaRepository.insert(item);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(JframeVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btFinalizarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btAddProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProdutosActionPerformed
-        JDialog dialog = new JDialog();
-        dialog.setTitle("Selecionar produtos");
-
         JPanel panel = new JpanelConsultaProduto();
-        dialog.add(panel);
-
-        dialog.pack();
-        dialog.setLocationRelativeTo(null);
-        dialog.setResizable(false);
-        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-
-        dialog.setVisible(true);
-        
+        JFrame frame = new JFrame("Consulta de Cliente");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(false);
+        frame.add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }//GEN-LAST:event_btAddProdutosActionPerformed
 
     private void jFieldVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFieldVendedorActionPerformed
-        // TODO add your handling code here:
+        atualizarTabela();
     }//GEN-LAST:event_jFieldVendedorActionPerformed
 
     private void btSelecionarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarVendedorActionPerformed
-        JDialog dialog = new JDialog();
-        dialog.setTitle("Selecionar vendedor");
 
         JPanel panel = new JpanelConsultaCliente();
-        dialog.add(panel);
-
-        dialog.pack();
-        dialog.setLocationRelativeTo(null);
-        dialog.setResizable(false);
-        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-
-        dialog.setVisible(true);
+        JFrame frame = new JFrame("Consulta de Cliente");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(false);
+        frame.add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }//GEN-LAST:event_btSelecionarVendedorActionPerformed
 
-//    public static void addNovoItemToTable(ItemVenda item) {
-//        DefaultTableModel model = (DefaultTableModel) tableItens.getModel();
-//        
-//        Object[] object = new Object[]{ 
-//            item.getProduto().getDescricao(),
-//            item.getProduto().getValorUnitario(),
-//            item.getQuantidade(),
-//            item.getDescontoProduto(),
-//            item.getValorTotal(),
-//        };
-//        
-//        model.addRow(object);
-//    }
-    
-    public static void addNovoItemToTable(ItemVenda item) {
+    private void btAtualizarTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarTabelaActionPerformed
+        atualizarTabela();
+    }//GEN-LAST:event_btAtualizarTabelaActionPerformed
+
+    public void addNovoItemToTable(ItemVenda item) {
         JframeVenda.listaItemVenda.add(item);
-        
-         ItemVendaTableModel model = 
+    }
+    
+    
+    private void atualizarTabela() {
+        ItemVendaTableModel model = 
                 new ItemVendaTableModel(JframeVenda.listaItemVenda);
         
         tableItens.setModel(model);
-        
     }
     
     /**
@@ -527,6 +531,7 @@ public class JframeVenda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddProdutos;
+    private javax.swing.JButton btAtualizarTabela;
     private javax.swing.JButton btFinalizar;
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btSelecionarCliente;
@@ -553,6 +558,6 @@ public class JframeVenda extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private static javax.swing.JTable tableItens;
+    private javax.swing.JTable tableItens;
     // End of variables declaration//GEN-END:variables
 }

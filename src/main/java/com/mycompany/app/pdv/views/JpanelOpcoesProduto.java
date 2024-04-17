@@ -192,8 +192,9 @@ public class JpanelOpcoesProduto extends javax.swing.JPanel {
             itemVenda.setProduto(this.produto);
             itemVenda.setDescontoProduto(this.descontoProduto);
             itemVenda.setQuantidade(this.qtdProduto);
-        
-            JframeVenda.addNovoItemToTable(itemVenda);
+            JframeVenda jframeVenda = new JframeVenda();
+            
+            jframeVenda.addNovoItemToTable(itemVenda);
         } catch( Exception ex) {
             JOptionPane.showMessageDialog(null, "Por favor informe algum valor válido", "Input inválido", JOptionPane.ERROR_MESSAGE);
         }
