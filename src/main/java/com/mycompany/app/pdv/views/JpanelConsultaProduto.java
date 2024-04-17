@@ -2,6 +2,10 @@ package com.mycompany.app.pdv.views;
 
 
 import com.mycompany.app.pdv.entities.Produto;
+import com.mycompany.app.pdv.repositories.ProdutoRepository;
+import com.mycompany.app.pdv.repositories.ProdutoRepositoryImp;
+import com.mycompany.app.pdv.tablemodels.ProdutoTableModel;
+import com.mycompany.app.pdv.util.EntityManagerUtil;
 
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
@@ -21,6 +25,9 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
     /**
      * Creates new form JpanelConsultaProduto
      */
+    
+    private List<Produto> produtos = new ArrayList<>();
+    
     public JpanelConsultaProduto() {
         initComponents();
         atualizarLista();
@@ -43,7 +50,7 @@ public class JpanelConsultaProduto extends javax.swing.JPanel {
          btAdicionar.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            adicionarProdutosSelecionados();
+            adicionarProdutoSelecionado();
         }
     });
         
@@ -175,21 +182,7 @@ private void filtrarTabela(String termoPesquisa) {
 
     
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
-        
-        adicionarProdutosSelecionados();
-//        JDialog dialog = new JDialog();
-//        dialog.setTitle("Opções do produto");
-//
-//        JPanel panel = new JpanelOpcoesProduto(1);
-//        dialog.add(panel);
-//
-//        dialog.pack();
-//        dialog.setLocationRelativeTo(null);
-//        dialog.setResizable(false);
-//        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-//
-//        dialog.setVisible(true);
-        
+        adicionarProdutoSelecionado();
     }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -207,72 +200,31 @@ private void filtrarTabela(String termoPesquisa) {
 }
     
     private void atualizarLista() {
-    List<Produto> listProdutos = new ArrayList<>();
-    
-
-    Produto produto1 = new Produto();
-    
-    produto1.setId(1);
-    produto1.setDescricao("Pão");
-    produto1.setValorUnitario(10.50);
-    produto1.setQuantidade(4);
-    
-
-    Produto produto2 = new Produto();
-    produto2.setId(2);
-    produto2.setDescricao("Geladeira");
-    produto2.setValorUnitario(15.75);
-    produto2.setQuantidade(32);
-
-    Produto produto3 = new Produto();
-    produto3.setId(3);
-    produto3.setDescricao("Casa");
-    produto3.setValorUnitario(8.99);
-    produto3.setQuantidade(10);
-
-    listProdutos.add(produto1);
-    listProdutos.add(produto2);
-    listProdutos.add(produto3);
-
-    atualizarTabela(listProdutos);
+        List<Produto> listaProdutos = new ArrayList<>();
+        
+         ProdutoRepository produtoRepository = new 
+            ProdutoRepositoryImp(EntityManagerUtil.getManager());
+        
+        listaProdutos.addAll(produtoRepository.findAll());
+        this.produtos = listaProdutos;
+        
+         ProdutoTableModel model = 
+                new ProdutoTableModel(listaProdutos);
+        
+        jTable1.setModel(model);
     }
     
-//    private void adicionarProdutosSelecionados() {
-//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//    int rowCount = model.getRowCount();
-//    
-//   
-//    for (int i = 0; i < rowCount; i++) {
-//        boolean selecionado = (boolean) jTable1.getValueAt(i, 4); // Obtém o valor do boolean "Selecionar"
-//        if (selecionado) {
-//            JframeVenda frameVenda = new JframeVenda();
-//            int codigo = (int) jTable1.getValueAt(i, 0); // Obtém o código do produto
-//            String descricao = (String) jTable1.getValueAt(i, 1); // Obtém a descrição do produto
-//            double valorUnitario = (double) jTable1.getValueAt(i, 2); // Obtém o valor unitário do produto
-//            int quantidade = (int) jTable1.getValueAt(i, 3);
-//            double desconto = (double) jTable1.getValueAt(i, 4); // Obtém o valor unitário do produto
-//         
-//            frameVenda.adicionarProdutos(1, "pao", 1.0, 6, 7.0);
-//        }
-//    }
-//}
-    
-    private void adicionarProdutosSelecionados() {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    int rowCount = model.getRowCount();
-    
-   
-    for (int i = 0; i < rowCount; i++) {
-        boolean selecionado = (boolean) jTable1.getValueAt(i, 4); // Obtém o valor do boolean "Selecionar"
-        if (selecionado) {
-            int codigo = (int) jTable1.getValueAt(i, 0); // Obtém o código do produto
-            String descricao = (String) jTable1.getValueAt(i, 1); // Obtém a descrição do produto
-            double valorUnitario = (double) jTable1.getValueAt(i, 2); // Obtém o valor unitário do produto
-            
-            Produto produto = new Produto(codigo, descricao, valorUnitario);
-            chamaMenuOpcoes(produto);
+    private void adicionarProdutoSelecionado() {
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow != -1) {
+            int id = Integer.parseInt((String) jTable1.getValueAt(selectedRow, 0));
+            for (Produto produto : this.produtos) {
+                if (produto.getId() == id) {
+                    chamaMenuOpcoes(produto);
+                }
+            }
         }
-    }
 }
     
     private void chamaMenuOpcoes(Produto produto){ 
@@ -285,6 +237,7 @@ private void filtrarTabela(String termoPesquisa) {
         dialog.pack();
         dialog.setLocationRelativeTo(null);
         dialog.setResizable(false);
+        dialog.setSize(475, 425);
         dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         dialog.setVisible(true);

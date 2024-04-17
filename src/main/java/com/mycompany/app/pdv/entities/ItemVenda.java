@@ -1,15 +1,11 @@
 
 package com.mycompany.app.pdv.entities;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,7 +17,7 @@ public class ItemVenda {
     private int id;
     @OneToOne
     private Produto produto;
-    @ManyToOne
+    @OneToOne
     private Venda venda;
     @Column(name = "ds_itemvenda")
     private String descricao;

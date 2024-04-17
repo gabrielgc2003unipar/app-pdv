@@ -3,14 +3,14 @@ package com.mycompany.app.pdv.views;
 import com.mycompany.app.pdv.entities.ItemVenda;
 import com.mycompany.app.pdv.entities.Produto;
 import com.mycompany.app.pdv.services.ProdutoService;
-import java.awt.Container;
+import javax.swing.JOptionPane;
 
 public class JpanelOpcoesProduto extends javax.swing.JPanel {
 
     
     private Produto produto;
     private int qtdProduto;
-    private int descontoProduto;
+    private double descontoProduto;
     
     /** Creates new form JpanelConsulta */
     public JpanelOpcoesProduto(Produto produto) {
@@ -165,7 +165,7 @@ public class JpanelOpcoesProduto extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -174,22 +174,29 @@ public class JpanelOpcoesProduto extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 387, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 16, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 16, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarActionPerformed
-        ItemVenda itemVenda = new ItemVenda();
-        itemVenda.setProduto(this.produto);
-        itemVenda.setDescontoProduto(this.descontoProduto);
-        itemVenda.setQuantidade(this.qtdProduto);
+        try {
+            this.descontoProduto = Double.parseDouble(fieldDesconto.getText());
+            this.qtdProduto = Integer.parseInt(fieldDesconto.getText());
+            
+            ItemVenda itemVenda = new ItemVenda();
+            itemVenda.setProduto(this.produto);
+            itemVenda.setDescontoProduto(this.descontoProduto);
+            itemVenda.setQuantidade(this.qtdProduto);
         
-        JframeVenda.addNovoItemToTable(itemVenda);
+            JframeVenda.addNovoItemToTable(itemVenda);
+        } catch( Exception ex) {
+            JOptionPane.showMessageDialog(null, "Por favor informe algum valor válido", "Input inválido", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btConfirmarActionPerformed
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed

@@ -32,6 +32,7 @@ com\mycompany\app\pdv\tablemodels\ProdutoTableModel.class
 com\mycompany\app\pdv\views\JframeVenda$3.class
 com\mycompany\app\pdv\entities\Cliente.class
 com\mycompany\app\pdv\entities\Produto.class
+com\mycompany\app\pdv\tablemodels\ItemVendaTableModel.class
 com\mycompany\app\pdv\views\JpanelConsultaProduto.class
 com\mycompany\app\pdv\views\JpanelOpcoesProduto$3.class
 com\mycompany\app\pdv\repositories\ProdutoRepository.class

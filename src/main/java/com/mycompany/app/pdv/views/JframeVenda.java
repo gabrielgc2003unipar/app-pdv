@@ -5,9 +5,11 @@
 package com.mycompany.app.pdv.views;
 
 import com.mycompany.app.pdv.entities.ItemVenda;
-import com.mycompany.app.pdv.util.EntityManagerUtil;
+import com.mycompany.app.pdv.tablemodels.ItemVendaTableModel;
 import java.awt.Color;
 import java.awt.Dialog;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class JframeVenda extends javax.swing.JFrame {
 
+    
+    private static List<ItemVenda> listaItemVenda = new ArrayList<>();
     /**
      * Creates new form JframeVenda
      */
@@ -87,6 +91,8 @@ public class JframeVenda extends javax.swing.JFrame {
         tableItens.setBackground(new java.awt.Color(204, 204, 204));
         tableItens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -450,18 +456,28 @@ public class JframeVenda extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_btSelecionarVendedorActionPerformed
 
+//    public static void addNovoItemToTable(ItemVenda item) {
+//        DefaultTableModel model = (DefaultTableModel) tableItens.getModel();
+//        
+//        Object[] object = new Object[]{ 
+//            item.getProduto().getDescricao(),
+//            item.getProduto().getValorUnitario(),
+//            item.getQuantidade(),
+//            item.getDescontoProduto(),
+//            item.getValorTotal(),
+//        };
+//        
+//        model.addRow(object);
+//    }
+    
     public static void addNovoItemToTable(ItemVenda item) {
-        DefaultTableModel model = (DefaultTableModel) tableItens.getModel();
+        JframeVenda.listaItemVenda.add(item);
         
-        Object[] object = new Object[]{ 
-            item.getProduto().getDescricao(),
-            item.getProduto().getValorUnitario(),
-            item.getQuantidade(),
-            item.getDescontoProduto(),
-            item.getValorTotal(),
-        };
+         ItemVendaTableModel model = 
+                new ItemVendaTableModel(JframeVenda.listaItemVenda);
         
-        model.addRow(object);
+        tableItens.setModel(model);
+        
     }
     
     /**

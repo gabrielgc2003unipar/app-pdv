@@ -3,6 +3,7 @@ D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\vie
 D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\entities\Cliente.java
 D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\repositories\ClienteRepositoryImp.java
 D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\repositories\ClienteRepository.java
+D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\tablemodels\ItemVendaTableModel.java
 D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\repositories\ItemVendaRepository.java
 D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\repositories\ProdutoRepository.java
 D:\Faculdade\Programacao DeskTop\app-pdv\src\main\java\com\mycompany\app\pdv\repositories\VendaRepository.java
